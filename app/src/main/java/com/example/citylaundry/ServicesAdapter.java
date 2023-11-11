@@ -47,6 +47,10 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.MyView
     public void onBindViewHolder(@NonNull ServicesAdapter.MyViewHolder holder, int position) {
         holder.itemName.setText(services.get(position).getItem());
         holder.state.setText(services.get(position).getState());
+        holder.city.setText(services.get(position).getCity());
+        holder.state.setText(services.get(position).getState());
+        holder.apartment.setText(services.get(position).getApartment());
+        holder.info.setText(services.get(position).getInfo());
 
         // Check if washing service is present
         if (services.get(position).getWashing() != null && !services.get(position).getWashing().isEmpty()) {
@@ -148,7 +152,7 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.MyView
         return services.size();
     }
     static  class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView itemName, washing, cleaning, ironing, state;
+        TextView itemName, washing, cleaning, ironing, city, state, apartment, info;
         private Button approve;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -159,6 +163,10 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.MyView
             cleaning=itemView.findViewById(R.id.cleaning);
             ironing=itemView.findViewById(R.id.ironing);
             state=itemView.findViewById(R.id.state);
+            city=itemView.findViewById(R.id.city);
+            state=itemView.findViewById(R.id.state);
+            apartment=itemView.findViewById(R.id.apartment);
+            info=itemView.findViewById(R.id.info);
             approve=itemView.findViewById(R.id.approve);
 
         }
