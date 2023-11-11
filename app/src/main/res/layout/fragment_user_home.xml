@@ -1,156 +1,477 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="3dp"
+    android:background="@color/bg"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".UserHomeFragment">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_gravity="center"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/msg"
+        android:textAlignment="center"
+        android:textColor="@color/blue"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:fontFamily="sans-serif"
+        android:textFontWeight="500"
+        android:textSize="22sp" />
 
-        <TextView
-            android:id="@+id/register"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="32dp"
-            android:text="@string/msg"
-            android:textAlignment="center"
-            android:textColor="@color/blue"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:fontFamily="sans-serif"
-            android:textFontWeight="500"
-            android:textSize="22sp" />
+            android:orientation="vertical">
 
-        <HorizontalScrollView
-            android:id="@+id/horizontalScrollView"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_margin="15dp"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginEnd="1dp"
-            android:layout_marginBottom="1dp"
-            android:foregroundGravity="center_vertical"
-            tools:ignore="SpeakableTextPresentCheck">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Prices for washing"
+                android:textSize="20sp"
+                android:layout_margin="5dp"
+                android:textStyle="bold"/>
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:foregroundGravity="center"
-                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:src="@drawable/img1" />
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="20dp"
+                    android:background="@color/bg">
 
-                <ImageView
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:src="@drawable/img" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="vertical">
 
-                <ImageView
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:src="@drawable/img_1" />
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:src="@drawable/img_4"
+                            android:scaleType="fitXY"/>
 
-                <ImageView
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:src="@drawable/img_1" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Suits"
+                            android:textSize="20sp"
+                            android:layout_margin="5dp"
+                            android:textStyle="bold"/>
 
-                <ImageView
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:src="@drawable/img_2" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Price: 20,000/= 1 kg"
+                            android:textSize="15sp"
+                            android:layout_margin="5dp"
+                            android:textStyle="normal"/>
 
-                <ImageView
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:src="@drawable/img_3" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Time: 30 minutes"
+                            android:textSize="15sp"
+                            android:layout_margin="5dp"
+                            android:textStyle="normal"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="20dp"
+                    android:background="@color/bg">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:src="@drawable/img"
+                            android:scaleType="fitXY"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Clothes"
+                            android:textSize="20sp"
+                            android:layout_margin="5dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Price: 20,000/= 1 kg"
+                            android:textSize="15sp"
+                            android:layout_margin="5dp"
+                            android:textStyle="normal"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Time: 30 minutes"
+                            android:textSize="15sp"
+                            android:layout_margin="5dp"
+                            android:textStyle="normal"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
 
             </LinearLayout>
 
-        </HorizontalScrollView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="20dp"
-        android:padding="20dp">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="20dp"
+                    android:background="@color/bg">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="32dp"
-            android:text="@string/hy"
-            android:textColor="@color/red"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:fontFamily="sans-serif"
-            android:textFontWeight="500"
-            android:textSize="20sp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="32dp"
-            android:text="@string/what_we_do"
-            android:textColor="@color/black"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionMode.Title"
-            android:fontFamily="sans-serif"
-            android:textFontWeight="500"
-            android:textSize="20sp" />
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:src="@drawable/img_5"
+                            android:scaleType="fitXY"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="32dp"
-            android:text="@string/washing"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:fontFamily="sans-serif"
-            android:textSize="20sp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Towels"
+                            android:textSize="20sp"
+                            android:layout_margin="5dp"
+                            android:textStyle="bold"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="32dp"
-            android:text="@string/dry"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:fontFamily="sans-serif"
-            android:textSize="20sp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Price: 10,000/= 1 kg"
+                            android:textSize="15sp"
+                            android:layout_margin="5dp"
+                            android:textStyle="normal"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="32dp"
-            android:text="@string/iron"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:fontFamily="sans-serif"
-            android:textSize="20sp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Time: 30 minutes"
+                            android:textSize="15sp"
+                            android:layout_margin="5dp"
+                            android:textStyle="normal"/>
 
-    </LinearLayout>
+                    </LinearLayout>
 
-    </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
-</FrameLayout>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="20dp"
+                    android:background="@color/bg">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:src="@drawable/img_6"
+                            android:scaleType="fitXY"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Jeans"
+                            android:textSize="20sp"
+                            android:layout_margin="5dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Price: 5,000/= 1 kg"
+                            android:textSize="15sp"
+                            android:layout_margin="5dp"
+                            android:textStyle="normal"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Time: 30 minutes"
+                            android:textSize="15sp"
+                            android:layout_margin="5dp"
+                            android:textStyle="normal"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Prices for ironing"
+                android:textSize="20sp"
+                android:layout_margin="5dp"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="20dp"
+                    android:background="@color/bg">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:src="@drawable/img_4"
+                            android:scaleType="fitXY"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Suits"
+                            android:textSize="20sp"
+                            android:layout_margin="5dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Price: 20,000/= 1 kg"
+                            android:textSize="15sp"
+                            android:layout_margin="5dp"
+                            android:textStyle="normal"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Time: 30 minutes"
+                            android:textSize="15sp"
+                            android:layout_margin="5dp"
+                            android:textStyle="normal"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="20dp"
+                    android:background="@color/bg">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:src="@drawable/img_7"
+                            android:scaleType="fitXY"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Clothes"
+                            android:textSize="20sp"
+                            android:layout_margin="5dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Price: 20,000/= 1 kg"
+                            android:textSize="15sp"
+                            android:layout_margin="5dp"
+                            android:textStyle="normal"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Time: 30 minutes"
+                            android:textSize="15sp"
+                            android:layout_margin="5dp"
+                            android:textStyle="normal"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="20dp"
+                    android:background="@color/bg">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:src="@drawable/img_8"
+                            android:scaleType="fitXY"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Bed sheets"
+                            android:textSize="20sp"
+                            android:layout_margin="5dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Price: 10,000/= 1 kg"
+                            android:textSize="15sp"
+                            android:layout_margin="5dp"
+                            android:textStyle="normal"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Time: 30 minutes"
+                            android:textSize="15sp"
+                            android:layout_margin="5dp"
+                            android:textStyle="normal"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="20dp"
+                    android:background="@color/bg">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:src="@drawable/img_6"
+                            android:scaleType="fitXY"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Jeans"
+                            android:textSize="20sp"
+                            android:layout_margin="5dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Price: 5,000/= 1 kg"
+                            android:textSize="15sp"
+                            android:layout_margin="5dp"
+                            android:textStyle="normal"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Time: 30 minutes"
+                            android:textSize="15sp"
+                            android:layout_margin="5dp"
+                            android:textStyle="normal"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
