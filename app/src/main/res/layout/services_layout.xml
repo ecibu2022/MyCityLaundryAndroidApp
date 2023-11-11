@@ -1,70 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    android:padding="5dp"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:layout_marginTop="5dp"
-       android:orientation="horizontal">
-
-       <TextView
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:layout_weight="1"
-           android:text="@string/item"/>
-
-       <TextView
-           android:id="@+id/item"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:layout_weight="1"
-           android:text="@string/item"/>
-
-   </LinearLayout>
-
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:textSize="22sp"
-        android:textAlignment="center"
-        android:textColor="@color/blue"
-        android:text="@string/service"/>
+        android:layout_margin="8dp"
+        android:background="@color/bg"
+        android:orientation="vertical"
+        app:contentPadding="5dp"
+        android:padding="16dp">
 
-    <TextView
-        android:id="@+id/washing"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="@string/washing"/>
+        <LinearLayout
+            android:id="@+id/itemLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/cleaning"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="@string/dry"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/item"/>
 
-    <TextView
-        android:id="@+id/ironing"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/iron"/>
+            <TextView
+                android:id="@+id/item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/item"/>
 
-    <Button
-        android:id="@+id/approve"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginEnd="32dp"
-        android:backgroundTint="@color/blue"
-        android:text="@string/approve" />
+        </LinearLayout>
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="22sp"
+            android:textAlignment="center"
+            android:textColor="@color/blue"
+            android:layout_below="@+id/itemLayout"
+            android:text="@string/service"/>
+
+        <TextView
+            android:id="@+id/washing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/title"
+            android:text="@string/washing"/>
+
+        <TextView
+            android:id="@+id/cleaning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/washing"
+            android:text="@string/dry"/>
+
+        <TextView
+            android:id="@+id/ironing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cleaning"
+            android:text="@string/iron"/>
+
+        <Button
+            android:id="@+id/approve"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ironing"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginEnd="32dp"
+            android:backgroundTint="@color/blue"
+            android:text="@string/approve" />
+
+    </LinearLayout>
+
+</RelativeLayout>
+
