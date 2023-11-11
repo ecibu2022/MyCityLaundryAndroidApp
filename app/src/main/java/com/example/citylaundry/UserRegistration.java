@@ -1,12 +1,12 @@
 package com.example.citylaundry;
 
 public class UserRegistration {
-    String firstName, lastName, email, phone, address, username, kin, userNO, gender, role;
+    String firstName, lastName, email, phone, address, username, kin, userNO, gender, role, deviceToken;
 
     public UserRegistration() {
     }
 
-    public UserRegistration(String firstName, String lastName, String email, String phone, String address, String username, String kin, String userNO, String gender, String role) {
+    public UserRegistration(String firstName, String lastName, String email, String phone, String address, String username, String kin, String userNO, String gender, String role, String deviceToken) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -17,6 +17,7 @@ public class UserRegistration {
         this.userNO = userNO;
         this.gender = gender;
         this.role = role;
+        this.deviceToken=deviceToken;
     }
 
     public String getFirstName() {
@@ -97,5 +98,13 @@ public class UserRegistration {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getDeviceToken() {
+        return deviceToken;
+    }
+
+    public void setDeviceToken(String deviceToken) {
+        this.deviceToken = deviceToken;
     }
 }

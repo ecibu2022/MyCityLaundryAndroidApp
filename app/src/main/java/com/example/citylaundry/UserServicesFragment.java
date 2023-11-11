@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,8 +21,26 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.annotations.NotNull;
+import com.google.gson.Gson;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class UserServicesFragment extends Fragment {
     private EditText item;
@@ -102,6 +121,7 @@ public class UserServicesFragment extends Fragment {
                             washing.setChecked(false);
                             cleaning.setChecked(false);
                             ironing.setChecked(false);
+                            sendNotification("New Service Requested");
                         }else{
                             Toast.makeText(getContext(), "Failed to save service", Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
@@ -119,6 +139,75 @@ public class UserServicesFragment extends Fragment {
         });
 
         return view;
+    }
+
+    //    Send Notification Method to a specific user
+    private void sendNotification(String notificationTitle) {
+        DatabaseReference adminTokenRef = FirebaseDatabase.getInstance().getReference().child("users");
+        Query adminQuery = adminTokenRef.orderByChild("role").equalTo("admin");
+        adminQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot adminSnapshot : dataSnapshot.getChildren()) {
+                    String adminToken = adminSnapshot.child("deviceToken").getValue(String.class);
+                    String name = adminSnapshot.child("role").getValue(String.class);
+                    Log.d("Admin Token: ", adminToken);
+                    Log.d("Role", name);
+                    if (adminToken != null) {
+                        // Send the notification using FCM
+                        sendFCMNotificationToAdmin(adminToken, notificationTitle);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle any database error that occurred while fetching the data
+            }
+        });
+    }
+
+    private void sendFCMNotificationToAdmin(String adminToken, String notificationTitle) {
+        // Set the FCM server key from Firebase Console
+        String serverKey = "AAAAfzFstEo:APA91bHMc4WffmzQv707_vGfyMB1cyq99Q7QzQC0Mm18tP0Z13z2Z9QM1Zk16R4uzqk-i5KFZUqfcPgIdwAk6ZfL1Op4YwREB2Dc_ByQHnDpkCpTfGoIz_LUYBKV0MLWXPjdb5x4m6xJ";
+
+        // Create the FCM message data payload (customize as needed)
+        Map<String, String> data = new HashMap<>();
+        data.put("title", "New Service Requested");
+        data.put("body", notificationTitle);
+
+        // Create the FCM message body
+        Map<String, Object> message = new HashMap<>();
+        message.put("to", adminToken);
+        message.put("data", data);
+
+        // Send the FCM message using OkHttp
+        OkHttpClient client = new OkHttpClient();
+        MediaType mediaType = MediaType.parse("application/json");
+        RequestBody body = RequestBody.create(mediaType, new Gson().toJson(message));
+        Request request = new Request.Builder()
+                .url("https://fcm.googleapis.com/fcm/send")
+                .post(body)
+                .addHeader("Authorization", "key=" + serverKey)
+                .addHeader("Content-Type", "application/json")
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                Log.e("FCM", "Failed to send notification to admin", e);
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    Log.d("FCM", "Notification sent to admin");
+                } else {
+                    Log.e("FCM", "Failed to send notification to admin");
+                }
+                response.close();
+            }
+        });
     }
 
 }

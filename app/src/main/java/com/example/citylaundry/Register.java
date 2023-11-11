@@ -22,6 +22,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class Register extends AppCompatActivity {
     private TextView login;
@@ -32,12 +33,25 @@ public class Register extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
     private ProgressDialog progressDialog;
-    private String Gender;
+    private String Gender, deviceToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (task.isSuccessful()) {
+                            // Device token obtained successfully
+                            deviceToken = task.getResult();
+                        } else {
+
+                        }
+                    }
+                });
 
         firstName=findViewById(R.id.fname);
         lastName=findViewById(R.id.lname);
@@ -84,7 +98,6 @@ public class Register extends AppCompatActivity {
                 String Password=password.getText().toString().trim();
                 String Kin=kin.getText().toString().trim();
                 String UserNO=userNO.getText().toString().trim();
-
                 String Role="user";
 
                 progressDialog.setTitle("Registration in progress.. .. ..");
@@ -96,7 +109,7 @@ public class Register extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            UserRegistration user=new UserRegistration(FirstName, LastName, Email, Phone, Address, Username, Kin, UserNO, Gender, Role);
+                            UserRegistration user=new UserRegistration(FirstName, LastName, Email, Phone, Address, Username, Kin, UserNO, Gender, Role, deviceToken);
                             databaseReference.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {

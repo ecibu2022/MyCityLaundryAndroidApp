@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -101,13 +102,13 @@ public class Login extends AppCompatActivity {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
                                     String role = dataSnapshot.child("role").getValue(String.class);
-                                    if (role.equals("admin")) {
+                                    if (role.equals("user")) {
+                                        Toast.makeText(Login.this, "User Login Successful", Toast.LENGTH_SHORT).show();
+                                        startActivity(new Intent(Login.this, UserDashboard.class));
+                                        finish();
+                                    } else if (role.equals("admin")) {
                                         Toast.makeText(Login.this, "Admin Login Successful", Toast.LENGTH_SHORT).show();
                                         startActivity(new Intent(Login.this, Admin.class));
-                                        finish();
-                                    } else if (role.equals("user")) {
-                                        Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(Login.this, UserDashboard.class));
                                         finish();
                                     } else {
                                         Toast.makeText(Login.this, "Login Failed. Please try again", Toast.LENGTH_SHORT).show();

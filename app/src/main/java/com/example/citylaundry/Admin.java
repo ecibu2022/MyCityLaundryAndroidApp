@@ -2,21 +2,23 @@ package com.example.citylaundry;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 
+import com.andremion.counterfab.CounterFab;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class Admin extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
     BottomNavigationView bottomNavigationView;
-    DrawerLayout drawerLayout;
+    ConstraintLayout drawerLayout;
+    CounterFab fabOne;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +30,21 @@ public class Admin extends AppCompatActivity implements BottomNavigationView.OnN
 
         bottomNavigationView=findViewById(R.id.bottomNavigationView);
         drawerLayout=findViewById(R.id.drawer_layout);
+        fabOne=findViewById(R.id.fabOne);
 
         //        Makes Home active when back button is clicked either in settings or profile it goes back to home
         getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, homeFragment).commit();
 
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
+
+        fabOne.setCount(10);
+        fabOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Admin.this, AdminHomeFragment.class));
+                finish();
+            }
+        });
     }
 
     AdminHomeFragment homeFragment=new AdminHomeFragment();

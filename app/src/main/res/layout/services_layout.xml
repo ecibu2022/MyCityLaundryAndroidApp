@@ -69,17 +69,30 @@
             android:layout_below="@+id/cleaning"
             android:text="@string/iron"/>
 
+<!--        <Button-->
+<!--            android:id="@+id/approve"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@+id/ironing"-->
+<!--            android:layout_marginStart="32dp"-->
+<!--            android:layout_marginTop="12dp"-->
+<!--            android:layout_marginBottom="15dp"-->
+<!--            android:layout_marginEnd="32dp"-->
+<!--            android:backgroundTint="@color/blue"-->
+<!--            android:text="@string/approve" />-->
+
         <Button
             android:id="@+id/approve"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/ironing"
+            android:text="@string/approve"
+            android:textAllCaps="false"
             android:layout_marginStart="32dp"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="15dp"
             android:layout_marginEnd="32dp"
-            android:backgroundTint="@color/blue"
-            android:text="@string/approve" />
+            android:textColor="@color/black"/>
 
     </LinearLayout>
 
