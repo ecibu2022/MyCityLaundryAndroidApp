@@ -21,6 +21,8 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,6 +33,7 @@ import com.google.firebase.database.annotations.NotNull;
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,7 +46,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class UserServicesFragment extends Fragment {
-    private EditText item;
+    private EditText item, city, state, apartment, info;
     private CheckBox washing, cleaning, ironing;
     private Button save;
     private String Washing, Cleaning, Ironing;
@@ -63,6 +66,10 @@ public class UserServicesFragment extends Fragment {
         washing=view.findViewById(R.id.washing);
         cleaning=view.findViewById(R.id.cleaning);
         ironing=view.findViewById(R.id.ironing);
+        city=view.findViewById(R.id.city);
+        state=view.findViewById(R.id.state);
+        apartment=view.findViewById(R.id.apartment);
+        info=view.findViewById(R.id.info);
         save=view.findViewById(R.id.save);
         databaseReference= FirebaseDatabase.getInstance().getReference("services");
 
@@ -72,7 +79,7 @@ public class UserServicesFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    Washing = "Ironing";
+                    Washing = "Washing";
                 } else {
                     Washing=null;
                 }
@@ -109,8 +116,15 @@ public class UserServicesFragment extends Fragment {
                 progressDialog.show();
 
                 String Item=item.getText().toString().trim();
+                String City=city.getText().toString().trim();
+                String State=state.getText().toString().trim();
+                String Apartment=apartment.getText().toString().trim();
+                String Info=info.getText().toString().trim();
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                String userID= user.getUid();
                 String id=databaseReference.push().getKey();
-                UserServicesModal servicesModal=new UserServicesModal(id, Item, Washing, Cleaning, Ironing);
+                Date currentDate=new Date();
+                UserServicesModal servicesModal=new UserServicesModal(id, userID, Item, Washing, Cleaning, Ironing, City, State, Apartment, Info, currentDate.toString(), "Pending", "0");
                 databaseReference.child(id).setValue(servicesModal).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -121,6 +135,10 @@ public class UserServicesFragment extends Fragment {
                             washing.setChecked(false);
                             cleaning.setChecked(false);
                             ironing.setChecked(false);
+                            city.setText(null);
+                            state.setText(null);
+                            apartment.setText(null);
+                            info.setText(null);
                             sendNotification("New Service Requested");
                         }else{
                             Toast.makeText(getContext(), "Failed to save service", Toast.LENGTH_SHORT).show();

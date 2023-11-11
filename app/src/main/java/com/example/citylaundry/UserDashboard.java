@@ -109,7 +109,10 @@ public class UserDashboard extends AppCompatActivity implements  NavigationView.
         } else if (id == R.id.services) {
             fragment = new UserServicesFragment();
             getSupportActionBar().setTitle("Our Services");
-        } else if (id == R.id.profile) {
+        } else if (id == R.id.history) {
+            fragment = new UserHistoryFragment();
+            getSupportActionBar().setTitle("Services History");
+        }else if (id == R.id.profile) {
             fragment = new UserProfileFragment();
             getSupportActionBar().setTitle("User Profile");
         } else if (id == R.id.logout) {

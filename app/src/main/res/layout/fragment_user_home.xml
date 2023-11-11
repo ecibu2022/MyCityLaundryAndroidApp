@@ -289,7 +289,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Suits"
+                            android:text="A Suit"
                             android:textSize="20sp"
                             android:layout_margin="5dp"
                             android:textStyle="bold"/>
@@ -297,7 +297,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Price: 20,000/= 1 kg"
+                            android:text="Price: 10,000/="
                             android:textSize="15sp"
                             android:layout_margin="5dp"
                             android:textStyle="normal"/>
@@ -305,7 +305,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Time: 30 minutes"
+                            android:text="Time: 20 minutes"
                             android:textSize="15sp"
                             android:layout_margin="5dp"
                             android:textStyle="normal"/>
@@ -338,7 +338,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Clothes"
+                            android:text="A shirt"
                             android:textSize="20sp"
                             android:layout_margin="5dp"
                             android:textStyle="bold"/>
@@ -346,7 +346,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Price: 20,000/= 1 kg"
+                            android:text="Price: 5,000/="
                             android:textSize="15sp"
                             android:layout_margin="5dp"
                             android:textStyle="normal"/>
@@ -354,7 +354,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Time: 30 minutes"
+                            android:text="Time: 10 minutes"
                             android:textSize="15sp"
                             android:layout_margin="5dp"
                             android:textStyle="normal"/>
@@ -394,7 +394,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Bed sheets"
+                            android:text="A pair of Bed sheets"
                             android:textSize="20sp"
                             android:layout_margin="5dp"
                             android:textStyle="bold"/>
@@ -402,7 +402,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Price: 10,000/= 1 kg"
+                            android:text="Price: 10,000/="
                             android:textSize="15sp"
                             android:layout_margin="5dp"
                             android:textStyle="normal"/>
@@ -410,7 +410,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Time: 30 minutes"
+                            android:text="Time: 10 minutes"
                             android:textSize="15sp"
                             android:layout_margin="5dp"
                             android:textStyle="normal"/>
@@ -459,7 +459,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Time: 30 minutes"
+                            android:text="Time: 15 minutes"
                             android:textSize="15sp"
                             android:layout_margin="5dp"
                             android:textStyle="normal"/>

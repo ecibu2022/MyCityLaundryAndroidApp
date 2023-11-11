@@ -17,6 +17,11 @@
             android:icon="@drawable/services"/>
 
         <item
+            android:id="@+id/history"
+            android:title="History"
+            android:icon="@drawable/stat"/>
+
+        <item
             android:id="@+id/profile"
             android:title="Profile"
             android:icon="@drawable/person"/>
