@@ -82,12 +82,13 @@ public class UserServicesFragment extends Fragment {
             }
         });
 
-        progressDialog.setMessage("Saving your service ......");
-        progressDialog.setCanceledOnTouchOutside(false);
-        progressDialog.show();
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progressDialog.setMessage("Saving your service ......");
+                progressDialog.setCanceledOnTouchOutside(false);
+                progressDialog.show();
+
                 String Item=item.getText().toString().trim();
                 String id=databaseReference.push().getKey();
                 UserServicesModal servicesModal=new UserServicesModal(id, Item, Washing, Cleaning, Ironing);

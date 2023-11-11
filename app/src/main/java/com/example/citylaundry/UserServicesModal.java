@@ -1,7 +1,7 @@
 package com.example.citylaundry;
 
 public class UserServicesModal {
-    String id, item, washing, cleaning, ironing;
+    String id, item, washing, cleaning, ironing, key;
 
     public UserServicesModal() {
     }
@@ -52,5 +52,13 @@ public class UserServicesModal {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 }

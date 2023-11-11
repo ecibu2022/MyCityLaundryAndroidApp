@@ -103,7 +103,8 @@ public class Login extends AppCompatActivity {
                                     String role = dataSnapshot.child("role").getValue(String.class);
                                     if (role.equals("admin")) {
                                         Toast.makeText(Login.this, "Admin Login Successful", Toast.LENGTH_SHORT).show();
-
+                                        startActivity(new Intent(Login.this, Admin.class));
+                                        finish();
                                     } else if (role.equals("user")) {
                                         Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
                                         startActivity(new Intent(Login.this, UserDashboard.class));
