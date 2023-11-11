@@ -33,6 +33,7 @@
     <string name="msg1">OUR LAUNDRY SERVICES</string>
     <string name="hy">HYGIENE IS OUR PRIORITY</string>
     <string name="approve">Approve Service</string>
+    <string name="logout">Logout</string>
     <string name="what_we_do">Our Services</string>
     <string name="update">Edit Profile</string>
     <string name="name">Fullname</string>
