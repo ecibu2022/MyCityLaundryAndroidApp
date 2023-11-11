@@ -69,17 +69,12 @@
             android:layout_below="@+id/cleaning"
             android:text="@string/iron"/>
 
-<!--        <Button-->
-<!--            android:id="@+id/approve"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@+id/ironing"-->
-<!--            android:layout_marginStart="32dp"-->
-<!--            android:layout_marginTop="12dp"-->
-<!--            android:layout_marginBottom="15dp"-->
-<!--            android:layout_marginEnd="32dp"-->
-<!--            android:backgroundTint="@color/blue"-->
-<!--            android:text="@string/approve" />-->
+        <TextView
+            android:id="@+id/state"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ironing"
+            android:text="State"/>
 
         <Button
             android:id="@+id/approve"

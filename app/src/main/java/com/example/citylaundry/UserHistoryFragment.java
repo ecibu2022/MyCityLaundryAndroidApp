@@ -46,6 +46,7 @@ public class UserHistoryFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setCancelable(false);
         builder.setTitle("Loading Services");
+        builder.setTitle("Loading history of services");
         builder.setMessage("Please wait......");
         AlertDialog dialog = builder.create();
         dialog.show();
@@ -80,6 +81,43 @@ public class UserHistoryFragment extends Fragment {
                        Toast.makeText(getContext(), "No history found", Toast.LENGTH_SHORT).show();
                    }
                });
+                // Retrieving all services
+                databaseReference = FirebaseDatabase.getInstance().getReference("services");
+                databaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        myItemsList.clear();
+                        for (DataSnapshot itemSnapshot: snapshot.getChildren()){
+                            // Make sure to use the actual field names in your Firebase data
+                            String id = itemSnapshot.child("id").getValue(String.class);
+                            String userID = itemSnapshot.child("userID").getValue(String.class);
+                            String item = itemSnapshot.child("item").getValue(String.class);
+                            String washing = itemSnapshot.child("washing").getValue(String.class);
+                            String cleaning = itemSnapshot.child("cleaning").getValue(String.class);
+                            String ironing = itemSnapshot.child("ironing").getValue(String.class);
+                            String city = itemSnapshot.child("city").getValue(String.class);
+                            String state = itemSnapshot.child("state").getValue(String.class);
+                            String apartment = itemSnapshot.child("apartment").getValue(String.class);
+                            String info = itemSnapshot.child("info").getValue(String.class);
+                            String currentDate = itemSnapshot.child("currentDate").getValue(String.class);
+                            String status = itemSnapshot.child("status").getValue(String.class);
+                            String price = itemSnapshot.child("price").getValue(String.class);
+
+                            UserServicesModal myItems = new UserServicesModal(id, userID, item, washing, cleaning, ironing, city, state, apartment, info, currentDate, status, price);
+                            // Assuming 'key' is a field in your Firebase data
+                            myItems.setKey(itemSnapshot.getKey());
+                            myItemsList.add(myItems);
+                        }
+                        adapter.notifyDataSetChanged();
+                        dialog.dismiss();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        dialog.dismiss();
+                    }
+                });
+
             }
 
             @Override

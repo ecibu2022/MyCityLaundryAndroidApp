@@ -56,12 +56,31 @@ public class PersonFragment extends Fragment {
 
         // Retrieving all services
         databaseReference = FirebaseDatabase.getInstance().getReference("services");
+
+        // Retrieving all services
+        databaseReference = FirebaseDatabase.getInstance().getReference("services");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 myItemsList.clear();
                 for (DataSnapshot itemSnapshot: snapshot.getChildren()){
-                    UserServicesModal myItems = itemSnapshot.getValue(UserServicesModal.class);
+                    // Make sure to use the actual field names in your Firebase data
+                    String id = itemSnapshot.child("id").getValue(String.class);
+                    String userID = itemSnapshot.child("userID").getValue(String.class);
+                    String item = itemSnapshot.child("item").getValue(String.class);
+                    String washing = itemSnapshot.child("washing").getValue(String.class);
+                    String cleaning = itemSnapshot.child("cleaning").getValue(String.class);
+                    String ironing = itemSnapshot.child("ironing").getValue(String.class);
+                    String city = itemSnapshot.child("city").getValue(String.class);
+                    String state = itemSnapshot.child("state").getValue(String.class);
+                    String apartment = itemSnapshot.child("apartment").getValue(String.class);
+                    String info = itemSnapshot.child("info").getValue(String.class);
+                    String currentDate = itemSnapshot.child("currentDate").getValue(String.class);
+                    String status = itemSnapshot.child("status").getValue(String.class);
+                    String price = itemSnapshot.child("price").getValue(String.class);
+
+                    UserServicesModal myItems = new UserServicesModal(id, userID, item, washing, cleaning, ironing, city, state, apartment, info, currentDate, status, price);
+                    // Assuming 'key' is a field in your Firebase data
                     myItems.setKey(itemSnapshot.getKey());
                     myItemsList.add(myItems);
                 }

@@ -1,26 +1,25 @@
 package com.example.citylaundry;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;;
 import java.util.List;
@@ -29,6 +28,8 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.MyView
     private ArrayList<UserServicesModal> services;
     private Context context;
     String key = "";
+    private DatabaseReference databaseReference;
+    private EditText txt;
 
     public ServicesAdapter(Context context, List<UserServicesModal> items) {
         this.services = (ArrayList<UserServicesModal>) items;
@@ -45,6 +46,7 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.MyView
     @Override
     public void onBindViewHolder(@NonNull ServicesAdapter.MyViewHolder holder, int position) {
         holder.itemName.setText(services.get(position).getItem());
+        holder.state.setText(services.get(position).getState());
 
         // Check if washing service is present
         if (services.get(position).getWashing() != null && !services.get(position).getWashing().isEmpty()) {
@@ -74,12 +76,71 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.MyView
         holder.approve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "Service Approved", Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder alertName = new AlertDialog.Builder(context);
+                final EditText editTextName1 = new EditText(context);
+                // add line after initializing editTextName1
+                editTextName1.setHint("Enter price of the service");
+                alertName.setTitle("***Confirm Service Requested***");
+                alertName.setView(editTextName1);
+                LinearLayout layoutName = new LinearLayout(context);
+                layoutName.setOrientation(LinearLayout.VERTICAL);
+                layoutName.addView(editTextName1);
+                alertName.setView(layoutName);
+
+                alertName.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        txt = editTextName1;
+                        collectInput();
+                    }
+                });
+
+                alertName.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        dialog.cancel();
+                    }
+                });
+
+                alertName.show();
+
             }
         });
 
     }
 
+    public void collectInput(){
+        // convert edit text to string
+        String getInput = txt.getText().toString();
+
+        // ensure that user input bar is not empty
+        if (getInput.trim() == null || getInput.trim().equals("")){
+            Toast.makeText(context, "Please enter the price of the service", Toast.LENGTH_LONG).show();
+        } else {
+            // Update Status and price of service
+            databaseReference = FirebaseDatabase.getInstance().getReference("services");
+
+            databaseReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot serviceSnapshot : snapshot.getChildren()) {
+                        String id = serviceSnapshot.child("id").getValue(String.class);
+
+                        if (id != null) {
+                            // Update price and status for the specific service
+                            databaseReference.child(id).child("price").setValue(getInput);
+                            databaseReference.child(id).child("status").setValue("Assigned");
+                            Toast.makeText(context, "Service Approved Successfully", Toast.LENGTH_SHORT).show();
+                            break;
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(context, "Failed to approve service", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
 
 
     @Override
@@ -87,10 +148,7 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.MyView
         return services.size();
     }
     static  class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView itemName;
-        TextView washing;
-        TextView cleaning;
-        TextView ironing;
+        TextView itemName, washing, cleaning, ironing, state;
         private Button approve;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -100,7 +158,7 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.MyView
             washing=itemView.findViewById(R.id.washing);
             cleaning=itemView.findViewById(R.id.cleaning);
             ironing=itemView.findViewById(R.id.ironing);
-
+            state=itemView.findViewById(R.id.state);
             approve=itemView.findViewById(R.id.approve);
 
         }
